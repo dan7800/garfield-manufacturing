@@ -4,9 +4,9 @@ import lombok.Value;
 
 @Value
 public class Order {
-    private int id;
-    private ModelType model;
-    private boolean stub = true;
+    private final int id;
+    private final ModelType model;
+    private final boolean stub = true;
 
     public static enum ModelType {
 	BASIC, MIDRANGE, HIGHEND
