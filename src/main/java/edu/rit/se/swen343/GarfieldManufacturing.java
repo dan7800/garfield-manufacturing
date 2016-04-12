@@ -10,7 +10,7 @@ import edu.rit.se.swen343.resources.OrderResource;
  * @author Brian Besmanoff (bbesmanoff)
  */
 public class GarfieldManufacturing extends
-	Application<GarfieldManufacturingConfiguration> {
+        Application<GarfieldManufacturingConfiguration> {
 
     /**
      * Runs the Dropwizard application by calling
@@ -22,20 +22,20 @@ public class GarfieldManufacturing extends
      *             if the application couldn't be run
      */
     public static void main(String[] args) throws Exception {
-	new GarfieldManufacturing().run(args);
+        new GarfieldManufacturing().run(args);
     }
 
     @Override
     public String getName() {
-	return "garfield-manufacturing";
+        return "garfield-manufacturing";
     }
 
     @Override
     public void run(GarfieldManufacturingConfiguration config, Environment env)
-	    throws Exception {
+            throws Exception {
 
-	env.healthChecks().register("application",
-		new GarfieldManufacturingHealthCheck());
-	env.jersey().register(new OrderResource());
+        env.healthChecks().register("application",
+                new GarfieldManufacturingHealthCheck());
+        env.jersey().register(new OrderResource());
     }
 }

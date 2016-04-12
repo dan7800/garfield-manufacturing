@@ -9,6 +9,6 @@ public class Order {
     private final boolean stub = true;
 
     public static enum ModelType {
-	BASIC, MIDRANGE, HIGHEND
+        BASIC, MIDRANGE, HIGHEND
     }
 }

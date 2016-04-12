@@ -27,7 +27,7 @@ public class OrderResource {
     private int temp_id;
 
     public OrderResource() {
-	this.temp_id = 1;
+        this.temp_id = 1;
     }
 
     /**
@@ -37,8 +37,8 @@ public class OrderResource {
      */
     @GET
     public List<Order> getOrders() {
-	return Arrays.asList(new Order(1, ModelType.BASIC), new Order(2,
-		ModelType.HIGHEND));
+        return Arrays.asList(new Order(1, ModelType.BASIC), new Order(2,
+                ModelType.HIGHEND));
     }
 
     /**
@@ -51,21 +51,21 @@ public class OrderResource {
     @GET
     @Path("/{id}")
     public Order getOrder(@PathParam("id") int id) {
-	if (id == 404) {
-	    throw new WebApplicationException("order not found for id=" + id,
-		    404);
-	}
-	return new Order(id, ModelType.BASIC);
+        if (id == 404) {
+            throw new WebApplicationException("order not found for id=" + id,
+                    404);
+        }
+        return new Order(id, ModelType.BASIC);
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Order createOrder(OrderRequest request) {
-	Order newOrder = new Order(temp_id++, ModelType.valueOf(request
-		.getModel()));
+        Order newOrder = new Order(temp_id++, ModelType.valueOf(request
+                .getModel()));
 
-	// pretend to save the object
+        // pretend to save the object
 
-	return newOrder;
+        return newOrder;
     }
 }
