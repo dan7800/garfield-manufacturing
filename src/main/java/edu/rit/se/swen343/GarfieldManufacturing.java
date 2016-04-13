@@ -2,7 +2,6 @@ package edu.rit.se.swen343;
 
 import io.dropwizard.Application;
 import io.dropwizard.setup.Environment;
-import edu.rit.se.swen343.resources.OrderResource;
 
 /**
  * Basic configuration for the application.
@@ -36,6 +35,5 @@ public class GarfieldManufacturing extends
 
         env.healthChecks().register("application",
                 new GarfieldManufacturingHealthCheck());
-        env.jersey().register(new OrderResource());
     }
 }
