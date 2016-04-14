@@ -1,8 +1,10 @@
 package edu.rit.se.swen343.resources;
 
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
+import edu.rit.se.swen343.api.OrderQuery;
 import edu.rit.se.swen343.api.OrderRequest;
 import edu.rit.se.swen343.api.OrderResponse;
 import edu.rit.se.swen343.clients.InventoryAPIClient;
@@ -21,7 +23,7 @@ public class OrderResource {
     @Path("/create")
     public OrderResponse createOrder(OrderRequest request) {
         InventoryAPIClient client = new MockInventoryAPIClient();
-        
+
         // in the future, this will do actual work
         client.decrementFastProcessors(); // pull a fast processor off the rack
 
@@ -31,5 +33,11 @@ public class OrderResource {
                 .error(null)
                 .build();
         // @formatter:on
+    }
+
+    @GET
+    public OrderQuery getOrders() {
+        return new OrderQuery(20); // eventually this can actaully contain
+                                   // orders
     }
 }

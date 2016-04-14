@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.Test;
 
+import edu.rit.se.swen343.api.OrderQuery;
 import edu.rit.se.swen343.api.OrderRequest;
 import edu.rit.se.swen343.api.OrderResponse;
 
@@ -39,4 +40,10 @@ public class OrderResourceTest {
         assertEquals(2, response2.getOrderNumber());
     }
 
+    @Test
+    public void testGetOrders() {
+        OrderQuery response = resource.getOrders();
+
+        assertEquals(response.getActiveOrders(), 20);
+    }
 }
