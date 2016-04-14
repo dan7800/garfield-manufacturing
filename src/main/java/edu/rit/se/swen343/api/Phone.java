@@ -1,0 +1,8 @@
+package edu.rit.se.swen343.api;
+
+import lombok.Value;
+
+@Value
+public class Phone {
+    private final String serial;
+}
