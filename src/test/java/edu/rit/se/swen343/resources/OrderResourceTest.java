@@ -3,12 +3,16 @@ package edu.rit.se.swen343.resources;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import edu.rit.se.swen343.api.OrderQuery;
 import edu.rit.se.swen343.api.OrderRequest;
 import edu.rit.se.swen343.api.OrderResponse;
+import edu.rit.se.swen343.api.Phone;
 
 public class OrderResourceTest {
     OrderResource resource;
@@ -20,24 +24,50 @@ public class OrderResourceTest {
 
     @Test
     public void testBasicOrderRequest() {
-        OrderRequest request = new OrderRequest("basic", 5);
+        OrderRequest request = new OrderRequest("B", 5);
         OrderResponse response = resource.createOrder(request);
+
+        // @formatter:off
+        List<Phone> expectedPhones = Arrays.asList(
+                new Phone("B00000001"),
+                new Phone("B00000002"),
+                new Phone("B00000003"),
+                new Phone("B00000004"),
+                new Phone("B00000005"));
+        // @formatter:on
 
         assertNull(response.getError());
         assertEquals(1, response.getOrderNumber());
+        assertEquals(expectedPhones, response.getPhonesCreated());
     }
 
     @Test
     public void testUniqueOrderIds() {
-        OrderRequest request = new OrderRequest("basic", 5);
+        OrderRequest request = new OrderRequest("B", 5);
         OrderResponse response1 = resource.createOrder(request);
         OrderResponse response2 = resource.createOrder(request);
 
+        List<Phone> expectedPhones1 = Arrays.asList(
+                new Phone("B00000001"),
+                new Phone("B00000002"),
+                new Phone("B00000003"),
+                new Phone("B00000004"),
+                new Phone("B00000005"));
+
+        List<Phone> expectedPhones2 = Arrays.asList(
+                new Phone("B00000006"),
+                new Phone("B00000007"),
+                new Phone("B00000008"),
+                new Phone("B00000009"),
+                new Phone("B00000010"));
+
         assertNull(response1.getError());
         assertEquals(1, response1.getOrderNumber());
+        assertEquals(expectedPhones1, response1.getPhonesCreated());
 
         assertNull(response2.getError());
         assertEquals(2, response2.getOrderNumber());
+        assertEquals(expectedPhones2, response2.getPhonesCreated());
     }
 
     @Test
