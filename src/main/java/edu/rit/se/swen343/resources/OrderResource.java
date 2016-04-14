@@ -6,6 +6,8 @@ import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import edu.rit.se.swen343.api.OrderQuery;
 import edu.rit.se.swen343.api.OrderRequest;
@@ -15,6 +17,7 @@ import edu.rit.se.swen343.clients.InventoryAPIClient;
 import edu.rit.se.swen343.clients.MockInventoryAPIClient;
 
 @Path("/orders")
+@Produces(MediaType.APPLICATION_JSON)
 public class OrderResource {
 
     private int currentOrder;
