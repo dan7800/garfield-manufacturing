@@ -6,7 +6,7 @@ import java.util.Map;
 import edu.rit.se.swen343.api.Phone;
 
 public interface CustomerSupportClient {
-    public List<Phone> getPhonesFromTicket(String labelInformation);
+    public List<Phone> getPhonesFromTicket(String labelInformation) throws Exception;
 
-    public void postPhonesReceieved(Map<String, Boolean> phoneRefundStatus);
+    public void postPhonesReceieved(Map<String, Boolean> phoneRefundStatus) throws Exception;
 }

@@ -2,36 +2,36 @@ package edu.rit.se.swen343.clients;
 
 public interface InventoryAPIClient {
     // getters
-    public int getKeyboards();
+    public int getKeyboards() throws Exception;
 
-    public int getTouchScreens();
+    public int getTouchScreens() throws Exception;
 
-    public int getBaseProcessors();
+    public int getBaseProcessors() throws Exception;
 
-    public int getFastProcessors();
+    public int getFastProcessors() throws Exception;
 
-    public int get16GBMemory();
+    public int get16GBMemory() throws Exception;
 
-    public int get32GBMemory();
+    public int get32GBMemory() throws Exception;
 
-    public int get64GBMemory();
+    public int get64GBMemory() throws Exception;
 
-    public int get128GBMemory();
+    public int get128GBMemory() throws Exception;
 
     // decrementors
-    public boolean decrementKeyboards();
+    public boolean decrementKeyboards() throws Exception;
 
-    public boolean decrementTouchScreens();
+    public boolean decrementTouchScreens() throws Exception;
 
-    public boolean decrementBaseProcessors();
+    public boolean decrementBaseProcessors() throws Exception;
 
-    public boolean decrementFastProcessors();
+    public boolean decrementFastProcessors() throws Exception;
 
-    public boolean decrement16GBMemory();
+    public boolean decrement16GBMemory() throws Exception;
 
-    public boolean decrement32GBMemory();
+    public boolean decrement32GBMemory() throws Exception;
 
-    public boolean decrement64GBMemory();
+    public boolean decrement64GBMemory() throws Exception;
 
-    public boolean decrement128GBMemory();
+    public boolean decrement128GBMemory() throws Exception;
 }

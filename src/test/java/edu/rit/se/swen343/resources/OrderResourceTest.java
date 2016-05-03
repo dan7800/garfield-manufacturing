@@ -23,18 +23,18 @@ public class OrderResourceTest {
     }
 
     @Test
-    public void testBasicOrderRequest() {
+    public void testBasicOrderRequest() throws Exception {
         OrderRequest request = new OrderRequest("B", 5);
         OrderResponse response = resource.createOrder(request);
 
-        // @formatter:off
+        //@formatter:off
         List<Phone> expectedPhones = Arrays.asList(
                 new Phone("B00000001"),
                 new Phone("B00000002"),
                 new Phone("B00000003"),
                 new Phone("B00000004"),
                 new Phone("B00000005"));
-        // @formatter:on
+        //@formatter:on
 
         assertNull(response.getError());
         assertEquals(1, response.getOrderNumber());
@@ -42,24 +42,28 @@ public class OrderResourceTest {
     }
 
     @Test
-    public void testUniqueOrderIds() {
+    public void testUniqueOrderIds() throws Exception {
         OrderRequest request = new OrderRequest("B", 5);
         OrderResponse response1 = resource.createOrder(request);
         OrderResponse response2 = resource.createOrder(request);
 
+        // @formatter:off
         List<Phone> expectedPhones1 = Arrays.asList(
                 new Phone("B00000001"),
                 new Phone("B00000002"),
                 new Phone("B00000003"),
                 new Phone("B00000004"),
                 new Phone("B00000005"));
+        // @formatter:on
 
+        // @formatter:off
         List<Phone> expectedPhones2 = Arrays.asList(
                 new Phone("B00000006"),
                 new Phone("B00000007"),
                 new Phone("B00000008"),
                 new Phone("B00000009"),
                 new Phone("B00000010"));
+        // @formatter:on
 
         assertNull(response1.getError());
         assertEquals(1, response1.getOrderNumber());

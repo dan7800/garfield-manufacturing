@@ -30,7 +30,7 @@ public class OrderResource {
 
     @POST
     @Path("/create")
-    public OrderResponse createOrder(OrderRequest request) {
+    public OrderResponse createOrder(OrderRequest request) throws Exception {
         InventoryAPIClient client = new MockInventoryAPIClient();
 
         // in the future, this will do actual work
