@@ -24,7 +24,7 @@ public class OrderResourceTest {
 
     @Test
     public void testBasicOrderRequest() throws Exception {
-        OrderRequest request = new OrderRequest("B", 5);
+        OrderRequest request = new OrderRequest("BASIC", 5);
         OrderResponse response = resource.createOrder(request);
 
         //@formatter:off
@@ -40,10 +40,28 @@ public class OrderResourceTest {
         assertEquals(1, response.getOrderNumber());
         assertEquals(expectedPhones, response.getPhonesCreated());
     }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testIllegalAmount() throws Exception {
+        OrderRequest request = new OrderRequest("BASIC", -5);
+        resource.createOrder(request);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testIllegalTypeName() throws Exception {
+        OrderRequest request = new OrderRequest("ILLEGAL", 5);
+        resource.createOrder(request);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testNullTypeName() throws Exception {
+        OrderRequest request = new OrderRequest(null, 5);
+        resource.createOrder(request);
+    }
 
     @Test
     public void testUniqueOrderIds() throws Exception {
-        OrderRequest request = new OrderRequest("B", 5);
+        OrderRequest request = new OrderRequest("BASIC", 5);
         OrderResponse response1 = resource.createOrder(request);
         OrderResponse response2 = resource.createOrder(request);
 
