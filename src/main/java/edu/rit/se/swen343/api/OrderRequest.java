@@ -1,9 +1,14 @@
 package edu.rit.se.swen343.api;
 
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Value
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrderRequest {
-    private final String type;
-    private final int amount;
+	private String type;
+
+	private int amount;
 }
