@@ -4,7 +4,7 @@
   <groupId>edu.rit.se.swen343</groupId>
   <artifactId>garfield-manufacturing</artifactId>
   <packaging>jar</packaging>
-  <version>1.2-SNAPSHOT</version>
+  <version>1.2</version>
   <name>garfield-manufacturing</name>
   <url>http://maven.apache.org</url>
   <dependencies>
