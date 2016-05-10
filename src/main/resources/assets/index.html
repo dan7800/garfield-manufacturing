@@ -1,9 +1,50 @@
 <!DOCTYPE html>
 <html>
   <head>
-  
+    <script type="text/javascript">
+      const handleSubmit = function(evt) {
+        evt.preventDefault();
+
+        const radios =
+          Array.from(document.querySelectorAll('input[type=radio]'));
+
+        const type = radios.find((btn) => btn.checked).value;
+        const amount = parseInt(document.getElementById('amount').value);
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/manufacturing/api/v1/orders/create');
+        xhr.setRequestHeader('Content-Type', 'application/json');
+
+        xhr.addEventListener('load', function() {
+          if (this.status === 200) {
+            alert(this.responseText);
+          } else if (this.status !== 500) {
+            const json = JSON.parse(this.responseText);
+            alert('there was an error' + json.error);
+          } else {
+            alert('there was an internal server error');
+          }
+
+        });
+
+        xhr.send(JSON.stringify({type, amount}));
+      };
+
+      window.onload = function() {
+        const form = document.getElementById('form');
+        form.addEventListener('submit', handleSubmit);
+      };
+    </script>
   </head>
   <body>
-    <h1> Hello World </h1>
+    <form id='form'>
+      Type: <br />
+      <input type="radio" name='type' value="BASE" checked /> Base <br />
+      <input type="radio" name='type' value="MEDIUM" /> Medium <br />
+      <input type="radio" name='type' value="HIGH" /> High <br />
+      Amount: 
+      <input type="number" id="amount" min=0 /><br />
+      <button type="submit">Submit</button>
+    </form>
   </body>
 </html>
