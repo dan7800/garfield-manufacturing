@@ -2,6 +2,9 @@ package edu.rit.se.swen343;
 
 import io.dropwizard.Application;
 import io.dropwizard.setup.Environment;
+
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
+
 import edu.rit.se.swen343.resources.OrderResource;
 import edu.rit.se.swen343.resources.StatisticResource;
 
@@ -11,34 +14,36 @@ import edu.rit.se.swen343.resources.StatisticResource;
  * @author Brian Besmanoff (bbesmanoff)
  */
 public class GarfieldManufacturing extends
-        Application<GarfieldManufacturingConfiguration> {
+		Application<GarfieldManufacturingConfiguration> {
 
-    /**
-     * Runs the Dropwizard application by calling
-     * {@link Application#run(String...)}.
-     *
-     * @param args
-     *            arguments from the command line
-     * @throws Exception
-     *             if the application couldn't be run
-     */
-    public static void main(String[] args) throws Exception {
-        new GarfieldManufacturing().run(args);
-    }
+	/**
+	 * Runs the Dropwizard application by calling
+	 * {@link Application#run(String...)}.
+	 *
+	 * @param args
+	 *            arguments from the command line
+	 * @throws Exception
+	 *             if the application couldn't be run
+	 */
+	public static void main(String[] args) throws Exception {
+		new GarfieldManufacturing().run(args);
+	}
 
-    @Override
-    public String getName() {
-        return "garfield-manufacturing";
-    }
+	@Override
+	public String getName() {
+		return "garfield-manufacturing";
+	}
 
-    @Override
-    public void run(GarfieldManufacturingConfiguration config, Environment env)
-            throws Exception {
+	@Override
+	public void run(GarfieldManufacturingConfiguration config, Environment env)
+			throws Exception {
 
-        env.healthChecks().register("application",
-                new GarfieldManufacturingHealthCheck());
+		env.getObjectMapper().registerModule(new Jdk8Module());
 
-        env.jersey().register(new OrderResource());
-        env.jersey().register(new StatisticResource(0, 0, 0));
-    }
+		env.healthChecks().register("application",
+				new GarfieldManufacturingHealthCheck());
+
+		env.jersey().register(new OrderResource());
+		env.jersey().register(new StatisticResource(0, 0, 0));
+	}
 }
