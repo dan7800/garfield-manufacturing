@@ -1,4 +1,4 @@
-# garfield-manufacturing
+# Garfield Manufacturing
 The manufacturing component of the SWEN-343 project
 
 ## Building / Deploying
